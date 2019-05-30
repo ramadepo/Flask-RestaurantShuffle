@@ -1,0 +1,13 @@
+# Debug Mode (boolean)
+DEBUG =
+
+# MySQL Connection Setting (String)
+DIALECT = ""
+DRIVER = ""
+USERNAME = ""
+PASSWORD = ""
+HOST = ""
+PORT = ""
+DATABASE = ""
+#dialect+driver://username:password@host:port/database
+f'{DIALECT}+{DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}'
