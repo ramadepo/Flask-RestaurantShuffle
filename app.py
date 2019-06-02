@@ -1,30 +1,14 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from exts import db
+from models import Player, Role
 import config
 
 app = Flask(__name__)
 app.config.from_object(config)
-db = SQLAlchemy(app)
+db.init_app(app)
 
-
-class Player(db.Model):
-    __tablename__ = 'player'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    
-
-class Role(db.Model):
-    __tablename__ = 'role'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100), nullable=False)
-    level = db.Column(db.Integer, nullable=False)
-    rank = db.Column(db.Integer)
-    owner_id = db.Column(db.Integer, db.ForeignKey('player.id'))
-    owner = db.relationship('Player', backref=db.backref('roles'))
-
-
-db.create_all()
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')
