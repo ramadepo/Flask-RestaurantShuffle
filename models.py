@@ -14,5 +14,5 @@ class Role(db.Model):
     name = db.Column(db.String(100), nullable=False)
     level = db.Column(db.Integer, nullable=False)
     rank = db.Column(db.Integer)
-    owner_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=False)
     owner = db.relationship('Player', backref=db.backref('roles'))
