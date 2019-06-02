@@ -1,14 +1,12 @@
 from flask import Flask
 from exts import db
-from models import Player, Role
 import config
+from models import Player, Role
+
 
 app = Flask(__name__)
 app.config.from_object(config)
 db.init_app(app)
-
-with app.app_context():
-    db.create_all()
 
 
 @app.route('/')
