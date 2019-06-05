@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            riushinokanwokure
+            Get/Post Test in Index
         </title>
     </head>
     <body>
-        <p>{{ number|abs }}</p>
+        <a href="{{ url_for('search', s1='hello', s2='world') }}">To Search Page</a>
+        <a href="{{ url_for('login') }}">To Login 1 Page</a>
     </body>
 </html>

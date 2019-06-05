@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from exts import db
 import config
 from models import Player, Role
@@ -11,19 +11,20 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    p1 = Player(username='a', password='1')
-    r1 = Role(name='ar', level=0, owner_id=1)
-    db.session.add(p1)
-    db.session.add(r1)
+    return render_template('index.html')
 
-    r2 = Role(name='arr', level=1)
-    r2.owner = Player.query.filter(Player.id == 1).first()
-    db.session.add(r2)
-    db.session.commit()
 
-    player = Player.query.filter(Player.id == 1).first()
-    print(player.roles)
-    return 'Index'
+@app.route('/search/')
+def search():
+    return 'Search ' + request.args.get('s1') + ' ' + request.args.get('s2')
+
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    elif request.method == 'POST':
+        return f"Your username is {request.form.get('username')} \t\t Your password is {request.form.get('password')}"
 
 
 if __name__ == '__main__':
