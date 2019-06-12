@@ -5,7 +5,7 @@
 */
 
 skel.init({
-	prefix: 'static/css/style',
+	prefix: 'static/css/synchronous/style',
 	resetCSS: true,
 	boxModel: 'border',
 	grid: {
