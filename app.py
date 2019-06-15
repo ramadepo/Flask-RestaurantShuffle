@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from exts import db
 import config
-from models import Player, Role
+from models import *
 
 
 app = Flask(__name__)
