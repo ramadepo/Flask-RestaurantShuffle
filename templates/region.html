@@ -5,26 +5,40 @@
 {% block region_active %} class="active" {% endblock %}
 
 {% block page_content %}
-	<div id="page">
-		<div class="container">
-			<div class="row">
-				<div class="3u">
-					<section id="sidebar1">
-						<p>Region</p>
-					</section>
-				</div>
-				<div class="6u skel-cell-important">
-					<section id="content">
-						<p>Region</p>
-					</section>
-				</div>
-				<div class="3u">
-					<section id="sidebard2">
-						<p>Region</p>
-					</section>
-				</div>
+<div id="page">
+	<div class="container">
+		<div class="row">
+			<div class="3u">
+				<section id="sidebar1">
+					<header>
+						<h2>地區</h2>
+					</header>
+					<div class="list-group">
+						{% for region in regions %}
+						<button type="button" class="list-group-item">{{ region.name }}</button>
+						{% endfor %}
+					</div>
+				</section>
 			</div>
-
+			<div class="6u skel-cell-important">
+				<section id="content">
+					<p>Region</p>
+				</section>
+			</div>
+			<div class="3u">
+				<section id="sidebard2">
+					<form action="{{ url_for('create_region') }}" method="POST">
+						<div class="input-group">
+							<input type="text" name="name" class="form-control" placeholder="請輸入地區名">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit">新增</button>
+							</span>
+						</div>
+					</form>
+				</section>
+			</div>
 		</div>
+
 	</div>
+</div>
 {% endblock %}

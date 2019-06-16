@@ -18,16 +18,22 @@ def index():
 def create_region():
     name = request.form.get('name')
 
-    region = Region(name=name)
-    db.session.add(region)
-    db.session.commit()
+    region = Region.query.filter(Region.name == name).first()
+
+    if region:
+        pass
+    else:
+        new_region = Region(name=name)
+        db.session.add(new_region)
+        db.session.commit()
 
     return redirect(url_for('get_regions'))
 
 
 @app.route('/region')
 def get_regions():
-    return render_template('region.html')
+    regions = Region.query.order_by(Region.name).all()
+    return render_template('region.html', regions=regions)
 
 
 @app.route('/region/<id>')
