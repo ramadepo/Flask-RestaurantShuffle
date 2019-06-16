@@ -46,16 +46,25 @@ def create_shop():
     name = request.form.get('name')
     region_id = request.form.get('region_id')
 
-    shop = Shop(name=name, region_id=region_id)
-    db.session.add(shop)
-    db.session.commit()
+    if region_id == 0:
+        pass
+    else:
+        shop = Shop.query.filter(
+            Shop.name == name, Shop.region_id == region_id).first()
+        if shop:
+            pass
+        else:
+            new_shop = Shop(name=name, region_id=region_id)
+            db.session.add(new_shop)
+            db.session.commit()
 
     return redirect(url_for('get_shops'))
 
 
 @app.route('/shop')
 def get_shops():
-    return render_template('shop.html')
+    regions = Region.query.order_by(Region.name).all()
+    return render_template('shop.html', regions=regions)
 
 
 @app.route('/shop/<id>')

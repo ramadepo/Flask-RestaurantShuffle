@@ -8,11 +8,13 @@
 <div id="page">
 	<div class="container">
 		<div class="row">
+			<!-- left sidebar -->
 			<div class="3u">
 				<section id="sidebar1">
 					<header>
 						<h2>地區</h2>
 					</header>
+					<!-- list all regions -->
 					<div class="list-group">
 						{% for region in regions %}
 						<button type="button" class="list-group-item">{{ region.name }}</button>
@@ -20,13 +22,17 @@
 					</div>
 				</section>
 			</div>
+			<!-- center sidebar -->
 			<div class="6u skel-cell-important">
+				<!-- show the information of region -->
 				<section id="content">
 					<p>Region</p>
 				</section>
 			</div>
+			<!-- right sidebar -->
 			<div class="3u">
 				<section id="sidebard2">
+					<!-- a form to create new region  -->
 					<form action="{{ url_for('create_region') }}" method="POST">
 						<div class="input-group">
 							<input type="text" name="name" class="form-control" placeholder="請輸入地區名">

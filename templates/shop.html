@@ -1,30 +1,54 @@
 {% extends 'base.html' %}
 
-{% block title %} Region {% endblock %}
+{% block title %} Shop {% endblock %}
 
 {% block shop_active %} class="active" {% endblock %}
 
 {% block page_content %}
-	<div id="page">
-		<div class="container">
-			<div class="row">
-				<div class="3u">
-					<section id="sidebar1">
-						<p>Shop</p>
-					</section>
-				</div>
-				<div class="6u skel-cell-important">
-					<section id="content">
-						<p>Shop</p>
-					</section>
-				</div>
-				<div class="3u">
-					<section id="sidebard2">
-						<p>Shop</p>
-					</section>
-				</div>
+<div id="page">
+	<div class="container">
+		<div class="row">
+			<!-- left sidebar -->
+			<div class="3u">
+				<section id="sidebar1">
+					<header>
+						<h2>地區</h2>
+					</header>
+					<!-- list all regions -->
+					<div class="list-group">
+						{% for region in regions %}
+						<button type="button" class="list-group-item">{{ region.name }}</button>
+						{% endfor %}
+					</div>
+				</section>
 			</div>
-
+			<!-- center sidebar -->
+			<div class="6u skel-cell-important">
+				<!-- list all shops in selected region -->
+				<section id="content">
+					<p>Shop</p>
+				</section>
+			</div>
+			<!-- right sidebar -->
+			<div class="3u">
+				<section id="sidebard2">
+					<!-- a form to create new shop  -->
+					<form action="{{ url_for('create_shop') }}" method="POST">
+						<select class="form-control" name="region_id">
+							<option value=0>請選擇地區</option>
+							{% for region in regions %}
+							<option value={{ region.id }}>{{ region.name }}</option>
+							{% endfor %}
+						</select>
+						<input type="text" name="name" class="form-control" placeholder="請輸入店家名">
+						<div class="justify-content-center">
+							<button type="submit" class="btn btn-default">新增</button>
+						</div>
+					</form>
+				</section>
+			</div>
 		</div>
+
 	</div>
+</div>
 {% endblock %}
