@@ -46,7 +46,7 @@ def create_shop():
     name = request.form.get('name')
     region_id = request.form.get('region_id')
 
-    if region_id == 0:
+    if region_id == '0':
         pass
     else:
         shop = Shop.query.filter(
@@ -64,7 +64,8 @@ def create_shop():
 @app.route('/shop')
 def get_shops():
     regions = Region.query.order_by(Region.name).all()
-    return render_template('shop.html', regions=regions)
+    shops = Shop.query.join(Region).order_by(Region.name).all()
+    return render_template('shop.html', regions=regions, shops=shops)
 
 
 @app.route('/shop/<id>')

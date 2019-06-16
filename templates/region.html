@@ -26,21 +26,38 @@
 			<div class="6u skel-cell-important">
 				<!-- show the information of region -->
 				<section id="content">
+					<header>
+						<h2>地區說明</h2>
+					</header>
 					<p>Region</p>
 				</section>
 			</div>
 			<!-- right sidebar -->
 			<div class="3u">
 				<section id="sidebard2">
-					<!-- a form to create new region  -->
-					<form action="{{ url_for('create_region') }}" method="POST">
-						<div class="input-group">
-							<input type="text" name="name" class="form-control" placeholder="請輸入地區名">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="submit">新增</button>
-							</span>
-						</div>
-					</form>
+					<ul class="style3">
+						<li class="first">
+							<header>
+								<h2>新增地區</h2>
+							</header>
+							<!-- a form to create new region  -->
+							<form action="{{ url_for('create_region') }}" method="POST">
+								<div class="input-group">
+									<input type="text" name="name" class="form-control" placeholder="請輸入地區名">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit">新增</button>
+									</span>
+								</div>
+							</form>
+						</li>
+						<li>
+							<header>
+								<h2>刪除地區</h2>
+							</header>
+						</li>
+					</ul>
+
+
 				</section>
 			</div>
 		</div>

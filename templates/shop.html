@@ -26,25 +26,42 @@
 			<div class="6u skel-cell-important">
 				<!-- list all shops in selected region -->
 				<section id="content">
-					<p>Shop</p>
+					<header>
+						<h2>店家列表</h2>
+					</header>
+					{% for shop in shops %}
+					<p>{{ shop.locate_region.name }} : {{ shop.name }}</p>
+					{% endfor %}
 				</section>
 			</div>
 			<!-- right sidebar -->
 			<div class="3u">
 				<section id="sidebard2">
-					<!-- a form to create new shop  -->
-					<form action="{{ url_for('create_shop') }}" method="POST">
-						<select class="form-control" name="region_id">
-							<option value=0>請選擇地區</option>
-							{% for region in regions %}
-							<option value={{ region.id }}>{{ region.name }}</option>
-							{% endfor %}
-						</select>
-						<input type="text" name="name" class="form-control" placeholder="請輸入店家名">
-						<div class="justify-content-center">
-							<button type="submit" class="btn btn-default">新增</button>
-						</div>
-					</form>
+					<ul class="style3">
+						<li class="first">
+							<header>
+								<h2>新增店家</h2>
+							</header>
+							<!-- a form to create new shop  -->
+							<form action="{{ url_for('create_shop') }}" method="POST">
+								<select class="form-control" name="region_id">
+									<option value="0">請選擇地區</option>
+									{% for region in regions %}
+									<option value={{ region.id }}>{{ region.name }}</option>
+									{% endfor %}
+								</select>
+								<input type="text" name="name" class="form-control" placeholder="請輸入店家名">
+								<div class="text-center">
+									<button type="submit" class="btn btn-default">新增</button>
+								</div>
+							</form>
+						</li>
+						<li>
+							<header>
+								<h2>刪除店家</h2>
+							</header>
+						</li>
+					</ul>
 				</section>
 			</div>
 		</div>
