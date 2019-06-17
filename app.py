@@ -80,7 +80,13 @@ def create_shop():
 @app.route('/shop')
 def get_shops():
     regions = Region.query.order_by(Region.name).all()
-    shops = Shop.query.join(Region).order_by(Region.name).all()
+    region_id = request.args.get('region_id')
+    
+    if region_id:
+        shops = Shop.query.filter(Shop.region_id == region_id)
+    else:
+        shops = Shop.query.join(Region).order_by(Region.name).all()
+
     return render_template('shop.html', regions=regions, shops=shops)
 
 
@@ -94,7 +100,7 @@ def delete_shop():
         db.session.commit()
     else:
         pass
-    
+
     return redirect(url_for('get_shops'))
 
 

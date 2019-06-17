@@ -17,7 +17,7 @@
 					<!-- list all regions -->
 					<div class="list-group">
 						{% for region in regions %}
-						<button type="button" class="list-group-item">{{ region.name }}</button>
+						<button type="button" class="list-group-item" onclick="window.location.href = '{{ url_for('get_shops', region_id=region.id) }}';">{{ region.name }}</button>
 						{% endfor %}
 					</div>
 				</section>
@@ -27,7 +27,7 @@
 				<!-- list all shops in selected region -->
 				<section id="content">
 					<header>
-						<h2>店家列表</h2>
+						<h2>店家列表 {{ region }}</h2>
 					</header>
 					{% for shop in shops %}
 					<p>{{ shop.id }}. {{ shop.locate_region.name }} : {{ shop.name }}</p>
