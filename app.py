@@ -20,7 +20,7 @@ def create_region():
 
     region = Region.query.filter(Region.name == name).first()
 
-    if region:
+    if region or name == '':
         pass
     else:
         new_region = Region(name=name)
@@ -36,6 +36,22 @@ def get_regions():
     return render_template('region.html', regions=regions)
 
 
+@app.route('/region/delete', methods=['POST'])
+def delete_region():
+    name = request.form.get('name')
+
+    if id:
+        region = Region.query.filter(Region.name == name).first()
+        for shop in region.shops:
+            db.session.delete(shop)
+        db.session.delete(region)
+        db.session.commit()
+    else:
+        pass
+
+    return redirect(url_for('get_regions'))
+
+
 @app.route('/region/<id>')
 def get_region(id):
     pass
@@ -46,7 +62,7 @@ def create_shop():
     name = request.form.get('name')
     region_id = request.form.get('region_id')
 
-    if region_id == '0':
+    if region_id == '0' or name == '':
         pass
     else:
         shop = Shop.query.filter(
@@ -66,6 +82,20 @@ def get_shops():
     regions = Region.query.order_by(Region.name).all()
     shops = Shop.query.join(Region).order_by(Region.name).all()
     return render_template('shop.html', regions=regions, shops=shops)
+
+
+@app.route('/shop/delete', methods=['POST'])
+def delete_shop():
+    id = request.form.get('id')
+
+    if id:
+        shop = Shop.query.filter(Shop.id == id).first()
+        db.session.delete(shop)
+        db.session.commit()
+    else:
+        pass
+    
+    return redirect(url_for('get_shops'))
 
 
 @app.route('/shop/<id>')
