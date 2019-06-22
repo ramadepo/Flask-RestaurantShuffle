@@ -13,6 +13,12 @@
 					<header>
 						<h2>地區</h2>
 					</header>
+					<!-- list all regions -->
+					<div class="list-group">
+						{% for region in regions %}
+						<button type="button" class="list-group-item" onclick="window.location.href = '{{ url_for('index', region_id=region.id) }}';">{{ region.name }}</button>
+						{% endfor %}
+					</div>
 				</section>
 			</div>
 			<div class="6u skel-cell-important">

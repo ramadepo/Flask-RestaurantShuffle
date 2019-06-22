@@ -17,7 +17,8 @@
 					<!-- list all regions -->
 					<div class="list-group">
 						{% for region in regions %}
-						<button type="button" class="list-group-item" onclick="window.location.href = '{{ url_for('get_shops', region_id=region.id) }}';">{{ region.name }}</button>
+						<button type="button" class="list-group-item {% if region.id == region_id %} active {% endif %}"
+							onclick="window.location.href = '{{ url_for('get_shops', region_id=region.id) }}';">{{ region.name }}</button>
 						{% endfor %}
 					</div>
 				</section>
