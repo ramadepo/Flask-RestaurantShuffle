@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %} Shop {% endblock %}
+{% block title %} Shop {% endblock title %}
 
-{% block shop_active %} class="active" {% endblock %}
+{% block shop_active %} class="active" {% endblock shop_active %}
 
 {% block page_content %}
 <div id="page">
@@ -61,6 +61,7 @@
 							<header>
 								<h2>刪除店家</h2>
 							</header>
+							<!-- a form to delete shop  -->
 							<form action="{{ url_for('delete_shop') }}" method="POST">
 								<div class="input-group">
 									<input type="text" name="id" class="form-control" placeholder="請輸入店家編號">
@@ -77,4 +78,4 @@
 
 	</div>
 </div>
-{% endblock %}
+{% endblock page_content %}

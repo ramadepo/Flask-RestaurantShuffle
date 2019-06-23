@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Home {% endblock title %}
 
-{% block home_active %} class="active" {% endblock %}
+{% block other_source %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/normalize.css') }}" />
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/demo.css') }}" /> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/component.css') }}" />
+	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/modernizr.custom.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
+{% endblock other_source %}
+
+{% block home_active %} class="active" {% endblock home_active %}
 
 {% block page_content %}
 <div id="page">
@@ -13,12 +21,18 @@
 					<header>
 						<h2>地區</h2>
 					</header>
-					<!-- list all regions -->
-					<div class="list-group">
+					<!-- first form to select regions -->
+					<form class="ac-custom ac-boxfill" autocomplete="off">
+						<!-- list all regions -->
+						<ul>
 						{% for region in regions %}
-						<button type="button" class="list-group-item" onclick="window.location.href = '{{ url_for('index', region_id=region.id) }}';">{{ region.name }}</button>
+							<li>
+								<input id="{{ 'region_' + (region.id|string) }}" name="selected_region" type="checkbox">
+								<label for="{{ 'region_' + (region.id|string) }}">{{ region.name }}</label>
+							</li>
 						{% endfor %}
-					</div>
+						</ul>
+					</form>
 				</section>
 			</div>
 			<div class="6u skel-cell-important">
@@ -39,4 +53,4 @@
 
 	</div>
 </div>
-{% endblock %}
+{% endblock page_content %}
