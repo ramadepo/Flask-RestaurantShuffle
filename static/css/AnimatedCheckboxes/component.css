@@ -91,17 +91,17 @@
 
 .ac-custom svg {
 	position: absolute;
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 	top: 50%;
-	margin-top: -20px;
-	left: 5px;
+	margin-top: -10px;
+	left: 0px;
 	pointer-events: none;
 }
 
 .ac-custom svg path {
 	stroke: #000000;
-	stroke-width: 13px;
+	stroke-width: 10px;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	fill: none;

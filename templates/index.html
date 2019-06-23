@@ -6,8 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/normalize.css') }}" />
 	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/demo.css') }}" /> -->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/component.css') }}" />
-	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/modernizr.custom.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
+	<!-- <script src="{{ url_for('static', filename='js/AnimatedCheckboxes/modernizr.custom.js') }}"></script> -->
 {% endblock other_source %}
 
 {% block home_active %} class="active" {% endblock home_active %}
@@ -54,3 +53,7 @@
 	</div>
 </div>
 {% endblock page_content %}
+
+{% block end_source %}
+	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
+{% endblock end_source %}
