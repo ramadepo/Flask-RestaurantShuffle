@@ -9,6 +9,12 @@
 {% block home_active %} class="active" {% endblock home_active %}
 
 {% block page_content %}
+<script>
+	var regions = {{ {'data': regions}|tojson }};
+	regions = regions.data;
+	var shops = {{ {'data': shops}|tojson }};
+	shops = shops.data;
+</script>
 <div id="page">
 	<div class="container">
 		<div class="row">
@@ -22,12 +28,14 @@
 						<!-- list all regions -->
 						<ul>
 						{% for region in regions %}
-							<li>
+							<li id="{{ region.id }}">
 								<input id="{{ 'region_' + (region.id|string) }}" name="selected_region" type="checkbox">
 								<label for="{{ 'region_' + (region.id|string) }}">{{ region.name }}</label>
 							</li>
 						{% endfor %}
 						</ul>
+						<br>
+						<button type="button" class="btn btn-default" onclick="get_shops_from_regions()">Go</button>
 					</form>
 				</section>
 			</div>
@@ -36,6 +44,12 @@
 					<header>
 						<h2>店家</h2>
 					</header>
+					<form class="ac-custom ac-boxfill" autocomplete="off">
+						<!-- list shops in selected regions -->
+						<ul id="shop_list">
+						
+						</ul>
+					</form>
 				</section>
 			</div>
 			<div class="3u">
@@ -53,4 +67,10 @@
 
 {% block end_source %}
 	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
+	<script>
+		function get_shops_from_regions(){
+			console.log(regions);
+			console.log(shops);
+		}
+	</script>
 {% endblock end_source %}

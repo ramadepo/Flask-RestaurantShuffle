@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from exts import db
 import config
 from models import Region, Shop
+import json
 
 
 app = Flask(__name__)
@@ -12,19 +13,12 @@ db.init_app(app)
 @app.route('/')
 def index():
     regions = Region.query.order_by(Region.name).all()
-    region_id = request.args.get('region_id')
+    shops = Shop.query.join(Region).order_by(Region.name).all()
 
-    if region_id:
-        pass
-    else:
-        pass
+    regions = list(region.serialize for region in regions)
+    shops = list(shop.serialize for shop in shops)
 
-    return render_template('index.html', regions=regions)
-
-
-@app.route('/', methods=['POST'])
-def shuffle_restaurant():
-    pass
+    return render_template('index.html', regions=regions, shops=shops)
 
 
 @app.route('/region', methods=['POST'])
