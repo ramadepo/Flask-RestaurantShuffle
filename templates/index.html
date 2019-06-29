@@ -3,16 +3,17 @@
 {% block title %} Home {% endblock title %}
 
 {% block other_source %}
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AnimatedCheckboxes/component.css') }}" />
+<link rel="stylesheet" type="text/css"
+	href="{{ url_for('static', filename='css/AnimatedCheckboxes/component.css') }}" />
 {% endblock other_source %}
 
 {% block home_active %} class="active" {% endblock home_active %}
 
 {% block page_content %}
 <script>
-	var regions = {{ {'data': regions}|tojson }};
+	var regions = {{ { 'data': regions }| tojson }};
 	regions = regions.data;
-	var shops = {{ {'data': shops}|tojson }};
+	var shops = {{ { 'data': shops }| tojson }};
 	shops = shops.data;
 </script>
 <div id="page">
@@ -27,12 +28,13 @@
 					<form class="ac-custom ac-boxfill" autocomplete="off">
 						<!-- list all regions -->
 						<ul>
-						{% for region in regions %}
-							<li id="{{ region.id }}">
-								<input id="{{ 'region_' + (region.id|string) }}" name="selected_region" type="checkbox">
-								<label for="{{ 'region_' + (region.id|string) }}">{{ region.name }}</label>
+							{% for region in regions %}
+							<li id="{{ 'region_' + (region.id|string) }}">
+								<input id="{{ 'regionInput_' + (region.id|string) }}" name="selected_region"
+									type="checkbox">
+								<label for="{{ 'regionInput_' + (region.id|string) }}">{{ region.name }}</label>
 							</li>
-						{% endfor %}
+							{% endfor %}
 						</ul>
 						<br>
 						<button type="button" class="btn btn-default" onclick="get_shops_from_regions()">Go</button>
@@ -47,7 +49,7 @@
 					<form class="ac-custom ac-boxfill" autocomplete="off">
 						<!-- list shops in selected regions -->
 						<ul id="shop_list">
-						
+
 						</ul>
 					</form>
 				</section>
@@ -66,11 +68,39 @@
 {% endblock page_content %}
 
 {% block end_source %}
-	<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
-	<script>
-		function get_shops_from_regions(){
-			console.log(regions);
-			console.log(shops);
+<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
+<script>
+	function get_shops_from_regions() {
+		clean_shop_list();
+		var node;
+		for (var i = 0; i < regions.length; i++) {
+			node = document.getElementById('region_' + regions[i].id);
+			for (var j = 0; j < node.children.length; j++) {
+				if (node.children[j].nodeName == 'svg') {
+					node = node.children[j];
+					if (node.hasChildNodes()) {
+						for (var k = 0; k < shops.length; k++) {
+							if (shops[k].region_id == regions[i].id) {
+								add_shop_to_list(k);
+							}
+						}
+					}
+				}
+			}
 		}
-	</script>
+	}
+	function add_shop_to_list(index) {
+		var node = document.getElementById('shop_list');
+		var li = document.createElement('li');
+		li.setAttribute('id', 'shop_' + index);
+		li.innerHTML = shops[index].name;
+		node.appendChild(li);
+	}
+	function clean_shop_list(){
+		var node = document.getElementById('shop_list');
+		while(node.firstChild){
+			node.removeChild(node.firstChild);
+		}
+	}
+</script>
 {% endblock end_source %}
