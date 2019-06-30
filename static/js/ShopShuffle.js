@@ -16,6 +16,7 @@ function get_shops_from_regions() {
             }
         }
     }
+    control_shuffle_display();
 }
 
 function add_shop_to_list(index) {
@@ -26,9 +27,26 @@ function add_shop_to_list(index) {
     node.appendChild(li);
 }
 
-function clean_shop_list(){
+function clean_shop_list() {
     var node = document.getElementById('shop_list');
-    while(node.firstChild){
+    while (node.firstChild) {
         node.removeChild(node.firstChild);
+    }
+}
+
+function shops_shuffle() {
+    var shop_list = document.getElementById('shop_list').children;
+    var number = Math.floor(Math.random() * shop_list.length);
+    var node = document.getElementById('shuffle_result');
+    node.innerHTML = shop_list[number].innerHTML;
+}
+
+function control_shuffle_display() {
+    var node = document.getElementById('btn_shuffle');
+    if (document.getElementById('shop_list').hasChildNodes()) {
+        node.style.display = 'inline';
+    }
+    else {
+        node.style.display = 'none';
     }
 }
