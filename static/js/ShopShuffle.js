@@ -23,6 +23,7 @@ function add_shop_to_list(index) {
     var node = document.getElementById('shop_list');
     var li = document.createElement('li');
     li.setAttribute('id', 'shop_' + index);
+    li.setAttribute('class', 'my-ac-custom')
     li.innerHTML = shops[index].name;
     node.appendChild(li);
 }

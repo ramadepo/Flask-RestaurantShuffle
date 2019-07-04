@@ -33,6 +33,14 @@
 	position: relative;
 }
 
+li.my-ac-custom {
+	display: inline-block;
+	margin: 0 auto;
+	padding: 0.5em 0.5em;
+	position: relative;
+	font-size: 1.2em;
+}
+
 .ac-custom label {
 	display: inline-block;
 	position: relative;
