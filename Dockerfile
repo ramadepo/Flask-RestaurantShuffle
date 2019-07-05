@@ -1,6 +1,6 @@
 FROM python:3.7.3
 MAINTAINER Rama
-LABEL version="1.0"
+LABEL version="1.1"
 
 COPY . /app
 WORKDIR /app
