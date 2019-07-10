@@ -10,4 +10,6 @@ pip install flask-script
 
 pip install flask-migrate
 
+pip install cryptography
+
 [Docker Hub](https://hub.docker.com/r/ramadepo/restaurant_shuffle)
