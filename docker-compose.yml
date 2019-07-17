@@ -1,0 +1,18 @@
+version: '3'
+services:
+  my-rs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    network:
+      - my-net
+  mysqldb:
+    image: mysql
+    network:
+      - my-net
+
+networks:
+  my-net:
+    driver: bridge
