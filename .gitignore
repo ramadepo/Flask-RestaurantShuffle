@@ -1,4 +1,4 @@
 *.pyc
-config.py
-migrations/*
-uwsgi/restaurantshuffle.log
+restaurantshuffle/config.py
+restaurantshuffle/migrations/*
+restaurantshuffle/uwsgi/restaurantshuffle.log
