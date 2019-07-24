@@ -1,16 +1,16 @@
 version: '3'
 services:
   mysqldb:
-    image: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=mysqlpassword
-      - MYSQL_DATABASE=db_flask_rs
+    image: ramadepo/rsmysql:1.5
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
     networks:
       - my-net
   my-rs:
-    image: ramadepo/restaurant-shuffle:1.4
+    image: ramadepo/restaurant-shuffle:1.5
     build:
-      context: .
+      context: ./restaurantshuffle
       dockerfile: Dockerfile
     depends_on:
       - mysqldb

@@ -1,4 +1,5 @@
 flask
+uwsgi
 pymysql
 flask-sqlalchemy
 flask-script
