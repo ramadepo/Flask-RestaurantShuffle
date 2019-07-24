@@ -12,12 +12,17 @@ services:
     build:
       context: ./restaurantshuffle
       dockerfile: Dockerfile
-    depends_on:
-      - mysqldb
-    ports:
-      - "5000:5000"
     networks:
       - my-net
+  nginx:
+    image: ramadepo/rsnginx:1.5
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - my-net 
 
 networks:
   my-net:
