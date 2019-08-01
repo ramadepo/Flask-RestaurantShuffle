@@ -1,6 +1,6 @@
 FROM python:3.7.3
 MAINTAINER Rama
-LABEL version="1.6"
+LABEL version="1.7"
 
 EXPOSE 5000
 COPY . /app

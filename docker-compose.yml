@@ -1,26 +1,27 @@
 version: '3'
 services:
   mysqldb:
-    image: ramadepo/rsmysql:1.5
+    image: ramadepo/rsmysql
     build:
       context: ./mysql
       dockerfile: Dockerfile
     networks:
       - my-net
   my-rs:
-    image: ramadepo/restaurant-shuffle:1.6
+    image: ramadepo/restaurant-shuffle:1.7
     build:
       context: ./restaurantshuffle
       dockerfile: Dockerfile
     networks:
       - my-net
   nginx:
-    image: ramadepo/rsnginx:1.5
+    image: ramadepo/rsnginx
     build:
       context: ./nginx
       dockerfile: Dockerfile
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - my-net 
 
