@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from exts import db
 import config
 from models import Region, Shop
-import json
 
 
 app = Flask(__name__)
@@ -96,7 +95,8 @@ def get_shops():
     else:
         shops = Shop.query.join(Region).order_by(Region.name).all()
 
-    return render_template('shop.html', regions=regions, shops=shops, region_id=region_id)
+    return render_template('shop.html',
+                           regions=regions, shops=shops, region_id=region_id)
 
 
 @app.route('/shop/delete', methods=['POST'])
