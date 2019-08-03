@@ -1,4 +1,5 @@
 *.pyc
+.vscode/*
 restaurantshuffle/config.py
 restaurantshuffle/migrations/*
 restaurantshuffle/uwsgi/restaurantshuffle.log
