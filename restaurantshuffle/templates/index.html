@@ -1,76 +1,38 @@
 {% extends 'base.html' %}
-
-{% block title %} Home {% endblock title %}
-
-{% block other_source %}
-<link rel="stylesheet" type="text/css"
-	href="{{ url_for('static', filename='css/AnimatedCheckboxes/component.css') }}" />
-{% endblock other_source %}
-
-{% block home_active %} class="active" {% endblock home_active %}
+{% block title %} The Shuffle - Home {% endblock title %}
 
 {% block page_content %}
-<script>
-	var regions = {{ { 'data': regions }| tojson }};
-	regions = regions.data;
-	var shops = {{ { 'data': shops }| tojson }};
-	shops = shops.data;
-</script>
-<div id="page">
-	<div class="container">
-		<div class="row">
-			<div class="3u">
-				<section id="sidebar1">
-					<header>
-						<h2>地區</h2>
-					</header>
-					<!-- first form to select regions -->
-					<form class="ac-custom ac-boxfill" autocomplete="off">
-						<!-- list all regions -->
-						<ul>
-							{% for region in regions %}
-							<li id="{{ 'region_' + (region.id|string) }}">
-								<input id="{{ 'regionInput_' + (region.id|string) }}" name="selected_region"
-									type="checkbox">
-								<label for="{{ 'regionInput_' + (region.id|string) }}">{{ region.name }}</label>
-							</li>
-							{% endfor %}
-						</ul>
-						<br>
-						<button type="button" class="btn btn-default" onclick="get_shops_from_regions()">Go</button>
-					</form>
-				</section>
-			</div>
-			<div class="6u skel-cell-important">
-				<section id="content">
-					<header>
-						<h2>店家</h2>
-					</header>
-					<form class="ac-custom ac-boxfill" autocomplete="off">
-						<!-- list shops in selected regions -->
-						<ul id="shop_list">
-
-						</ul>
-						<br>
-						<button type="button" id="btn_shuffle" class="btn btn-default" style="display: none" onclick="shops_shuffle()">Shuffle</button>
-					</form>
-				</section>
-			</div>
-			<div class="3u">
-				<section id="sidebard2">
-					<header>
-						<h2>結果</h2>
-					</header>
-					<p id="shuffle_result"></p>
-				</section>
-			</div>
-		</div>
-
-	</div>
-</div>
+<!-- Three -->
+<section id="three" class="wrapper align-center">
+    <div class="inner">
+        <div class="flex flex-2">
+            <article>
+                <div class="image round">
+                    <img src="{{ url_for('static', filename='images/Projection/pic01.jpg') }}" alt="Pic 01" />
+                </div>
+                <header>
+                    <h3>Lorem ipsum<br /> dolor amet nullam</h3>
+                </header>
+                <p>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in
+                    diam sed arcu. Cras<br />consequat egestas augue vulputate.</p>
+                <footer>
+                    <a href="#" class="button">Learn More</a>
+                </footer>
+            </article>
+            <article>
+                <div class="image round">
+                    <img src="{{ url_for('static', filename='images/Projection/pic02.jpg') }}" alt="Pic 02" />
+                </div>
+                <header>
+                    <h3>Sed feugiat<br /> tempus adipicsing</h3>
+                </header>
+                <p>Pellentesque fermentum dolor. Aliquam quam lectus<br />facilisis auctor, ultrices ut, elementum
+                    vulputate, nunc<br /> blandit ellenste egestagus commodo.</p>
+                <footer>
+                    <a href="#" class="button">Learn More</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+</section>
 {% endblock page_content %}
-
-{% block end_source %}
-<script src="{{ url_for('static', filename='js/AnimatedCheckboxes/svgcheckbx.js') }}"></script>
-<script src="{{ url_for('static', filename='js/ShopShuffle.js') }}"></script>
-{% endblock end_source %}

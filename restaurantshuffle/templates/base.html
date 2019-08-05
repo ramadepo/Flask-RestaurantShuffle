@@ -1,96 +1,109 @@
 <!DOCTYPE HTML>
 <!--
-	Synchronous by TEMPLATED
-    templated.co @templatedco
-    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
 
 <head>
-	<title>{% block title %}{% endblock title %}</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-
-	<!-- Bootstrap -->
-	<script src="{{ url_for('static', filename='js/bootstrap/jquery.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}" type='text/css'>
-	<script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
-	<!-- Bootstrap -->
-
-	<!-- Synchronous -->
-	<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="{{ url_for('static', filename='js/synchronous/skel.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/synchronous/skel-panels.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/synchronous/init.js') }}"></script>
-	<noscript>
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/synchronous/skel-noscript.css') }}" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/synchronous/style.css') }}" />
-	</noscript>
-	<!-- Synchronous -->
-
-	<!-- Other Source -->
-	{% block other_source %}{% endblock other_source %}
-	<!-- Other Source -->
+    <title>{% block title %}{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <!-- Bootstrap 4 -->
+    <script src="{{ url_for('static', filename='js/bootstrap/jquery-3.3.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap/popper.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}" />
+    <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+    <!-- Projection -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Projection/main.css') }}" />
 </head>
 
 <body>
-	<div id="wrapper">
 
-		<!-- Header -->
-		<div id="header">
-			<div class="container">
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <a href="{{ url_for('home') }}" class="logo"><strong>The Shuffle</strong> by Rama</a>
+            <nav id="nav">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('subject') }}">Subject</a>
+                <a href="{{ url_for('history') }}">History</a>
+                <a href="{{ url_for('log') }}">Log</a>
 
-				<!-- Logo -->
-				<div id="logo">
-					<h1><a href="#">Restaurant Shuffle</a></h1>
-					<span>所以，我將繼續前行。</span>
-				</div>
+            </nav>
+            <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+        </div>
+    </header>
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li {% block home_active %}{% endblock home_active %}><a href="{{ url_for('index') }}">Home</a></li>
-						<li {% block region_active %}{% endblock region_active %}><a href="{{ url_for('get_regions') }}">Region</a>
-						</li>
-						<li {% block shop_active %}{% endblock shop_active %}><a href="{{ url_for('get_shops') }}">Shop</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<!-- /Header -->
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <header>
+                <h1>Welcome to Projection</h1>
+            </header>
 
-		{% block page_content %}{% endblock page_content %}
+            <div class="flex ">
+                <div>
+                    <span class="icon fa-car"></span>
+                    <h3>Aliquam</h3>
+                    <p>Suspendisse amet ullamco</p>
+                </div>
+                <div>
+                    <span class="icon fa-camera"></span>
+                    <h3>Elementum</h3>
+                    <p>Class aptent taciti ad litora</p>
+                </div>
+                <div>
+                    <span class="icon fa-bug"></span>
+                    <h3>Ultrices</h3>
+                    <p>Nulla vitae mauris non felis</p>
+                </div>
+            </div>
 
-		<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div class="12u">
-						<section id="box2">
-							<header>
-								<h2>起源</h2>
-							</header>
-							<p>這是一個為了解決有選擇障礙的女友不知道午/晚餐該吃什麼的時候所使用，基於Flask框架+Python建立而成的RESTful Web Application</p>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
+            <footer>
+                <a href="#" class="button">Get Started</a>
+            </footer>
+        </div>
+    </section>
 
-		<!-- Copyright -->
-		<div id="copyright">
-			<div class="container">
-				Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a>
-				(<a href="http://unsplash.com/cc0">CC0</a>)
-			</div>
-		</div>
+    {% block page_content %}{% endblock page_content %}
 
-	</div>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <h3>Get in touch</h3>
 
-	{% block end_source %}{% endblock end_source %}
+            <form action="#" method="post">
+                <div class="field half first">
+                    <label for="name">Name</label>
+                    <input name="name" id="name" type="text" placeholder="Name">
+                </div>
+                <div class="field half">
+                    <label for="email">Email</label>
+                    <input name="email" id="email" type="email" placeholder="Email">
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+                </div>
+                <ul class="actions">
+                    <li><input value="Send Message" class="button alt" type="submit"></li>
+                </ul>
+            </form>
+
+            <div class="copyright">
+                &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a
+                    href="https://unsplash.com">Unsplash</a>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/Projection/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Projection/skel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Projection/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Projection/main.js') }}"></script>
+    {% block end_source %}{% endblock end_source %}
 </body>
 
 </html>

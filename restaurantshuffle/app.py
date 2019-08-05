@@ -11,112 +11,27 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    regions = Region.query.order_by(Region.name).all()
-    shops = Shop.query.join(Region).order_by(Region.name).all()
-
-    regions = list(region.serialize for region in regions)
-    shops = list(shop.serialize for shop in shops)
-
-    return render_template('index.html', regions=regions, shops=shops)
+    return redirect(url_for('home'))
 
 
-@app.route('/region', methods=['POST'])
-def create_region():
-    name = request.form.get('name')
-
-    region = Region.query.filter(Region.name == name).first()
-
-    if region or name == '':
-        pass
-    else:
-        new_region = Region(name=name)
-        db.session.add(new_region)
-        db.session.commit()
-
-    return redirect(url_for('get_regions'))
+@app.route('/home')
+def home():
+    return render_template('index.html')
 
 
-@app.route('/region')
-def get_regions():
-    regions = Region.query.order_by(Region.name).all()
-
-    return render_template('region.html', regions=regions)
+@app.route('/subject')
+def subject():
+    return render_template('subject.html')
 
 
-@app.route('/region/delete', methods=['POST'])
-def delete_region():
-    name = request.form.get('name')
-
-    if name:
-        region = Region.query.filter(Region.name == name).first()
-        if region:
-            for shop in region.shops:
-                db.session.delete(shop)
-            db.session.delete(region)
-            db.session.commit()
-    else:
-        pass
-
-    return redirect(url_for('get_regions'))
+@app.route('/history')
+def history():
+    return render_template('history.html')
 
 
-@app.route('/region/<id>')
-def get_region(id):
-    pass
-
-
-@app.route('/shop', methods=['POST'])
-def create_shop():
-    name = request.form.get('name')
-    region_id = int(request.form.get('region_id', '0'))
-
-    if region_id == 0 or name == '':
-        pass
-    else:
-        shop = Shop.query.filter(
-            Shop.name == name, Shop.region_id == region_id).first()
-        if shop:
-            pass
-        else:
-            new_shop = Shop(name=name, region_id=region_id)
-            db.session.add(new_shop)
-            db.session.commit()
-
-    return redirect(url_for('get_shops'))
-
-
-@app.route('/shop')
-def get_shops():
-    regions = Region.query.order_by(Region.name).all()
-    region_id = int(request.args.get('region_id', '0'))
-
-    if region_id:
-        shops = Shop.query.filter(Shop.region_id == region_id)
-    else:
-        shops = Shop.query.join(Region).order_by(Region.name).all()
-
-    return render_template('shop.html',
-                           regions=regions, shops=shops, region_id=region_id)
-
-
-@app.route('/shop/delete', methods=['POST'])
-def delete_shop():
-    id = request.form.get('id')
-
-    if id:
-        shop = Shop.query.filter(Shop.id == id).first()
-        if shop:
-            db.session.delete(shop)
-            db.session.commit()
-    else:
-        pass
-
-    return redirect(url_for('get_shops'))
-
-
-@app.route('/shop/<id>')
-def get_shop(id):
-    pass
+@app.route('/log')
+def log():
+    return render_template('log.html')
 
 
 if __name__ == '__main__':
