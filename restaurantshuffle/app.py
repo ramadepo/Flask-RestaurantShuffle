@@ -11,26 +11,26 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    return redirect(url_for('home'))
+    return redirect(url_for('home_page'))
 
 
 @app.route('/home')
-def home():
-    return render_template('index.html')
+def home_page():
+    return render_template('home.html')
 
 
 @app.route('/subject')
-def subject():
+def subject_page():
     return render_template('subject.html')
 
 
 @app.route('/history')
-def history():
+def history_page():
     return render_template('history.html')
 
 
 @app.route('/log')
-def log():
+def log_page():
     return render_template('log.html')
 
 

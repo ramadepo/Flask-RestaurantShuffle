@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(font-awesome.min.css);
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600";
 
 /*
@@ -1633,8 +1632,8 @@
 		}
 
 	a {
-		color: #6cc091;
-		text-decoration: underline;
+		color: #FFFFFF;
+		text-decoration: none;
 	}
 
 		a:hover {
@@ -1974,7 +1973,7 @@
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background: #6cc091;
+		background: #23b1ec;
 		border-radius: 10px;
 		border: none;
 		border: solid 2px #8dcca9;
@@ -2104,16 +2103,16 @@
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #6cc091;
-			border-color: #6cc091;
+			background: #23b1ec;
+			border-color: #23b1ec;
 			color: #ffffff;
 			content: '\f00c';
 		}
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #6cc091;
-			box-shadow: 0 0 0 1px #6cc091;
+			border-color: #23b1ec;
+			box-shadow: 0 0 0 1px #23b1ec;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2279,7 +2278,7 @@
 
 	ul {
 		list-style: disc;
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 		padding-left: 1em;
 	}
 
@@ -2526,8 +2525,8 @@
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		background-color: transparent;
-		box-shadow: inset 0 0 0 3px #6cc091;
-		color: #6cc091 !important;
+		box-shadow: inset 0 0 0 3px #23b1ec;
+		color: #23b1ec !important;
 		border-radius: 30px;
 		border: 0;
 		cursor: pointer;
@@ -2641,7 +2640,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #6cc091;
+			background-color: #23b1ec;
 			color: #ffffff !important;
 		}
 
@@ -2697,7 +2696,7 @@
 	}
 
 		.subpage #header {
-			background: #6cc091;
+			background: #23b1ec;
 			top: 0;
 			height: 44px;
 			line-height: 44px;
@@ -2838,7 +2837,7 @@
 		position: fixed;
 		right: 0;
 		top: 0;
-		background: #6cc091;
+		background: #23b1ec;
 		color: #daefe3;
 		height: 100%;
 		max-width: 80%;
@@ -2916,7 +2915,7 @@
 /* Banner */
 
 	#banner {
-		padding: 8em 0 9em 0;
+		padding: 7.5em 0 0.5em 0;
 		background-image: url(../../images/Projection/banner.jpg);
 		background-size: cover;
 		background-position: bottom;
@@ -2940,7 +2939,7 @@
 			border-top: 2px solid rgba(255, 255, 255, 0.2);
 			position: relative;
 			z-index: 10005;
-			padding-top: 8em;
+			padding-top: 3.5em;
 		}
 
 		#banner h1 {
@@ -2948,7 +2947,7 @@
 			font-weight: 400;
 			color: #fff;
 			line-height: 1em;
-			margin: 0 0 1em 0;
+			margin: 0 0 0 0;
 			padding: 0;
 		}
 
@@ -2960,8 +2959,14 @@
 		}
 
 		#banner .icon {
-			color: #6cc091;
+			color: #23b1ec;
 			font-size: 2em;
+		}
+
+		#banner header p {
+			font-size: 1.5em;
+			color: rgba(255, 255, 255, 0.55);
+			margin-bottom: 1.75em;
 		}
 
 		#banner p {
@@ -3110,8 +3115,8 @@
 /* Footer */
 
 	#footer {
-		padding: 6em 0;
-		background: #6cc091;
+		padding: 2em 0;
+		background: #23b1ec;
 		color: #fff;
 		text-align: center;
 	}
@@ -3129,7 +3134,7 @@
 		#footer .copyright {
 			color: rgba(255, 255, 255, 0.5);
 			font-size: 0.8em;
-			margin: 0 0 2em 0;
+			margin: 0 0 0 0;
 			padding: 0;
 		}
 

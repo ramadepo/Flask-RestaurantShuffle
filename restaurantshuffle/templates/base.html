@@ -9,11 +9,16 @@
 <head>
     <title>{% block title %}{% endblock title %}</title>
     <meta charset="utf-8" />
+
     <!-- Bootstrap 4 -->
     <script src="{{ url_for('static', filename='js/bootstrap/jquery-3.3.1.slim.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap/popper.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}" />
     <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/fontawesome.css') }}" />
+
     <!-- Projection -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Projection/main.css') }}" />
 </head>
@@ -23,13 +28,13 @@
     <!-- Header -->
     <header id="header">
         <div class="inner">
-            <a href="{{ url_for('home') }}" class="logo"><strong>The Shuffle</strong> by Rama</a>
+            <a href="{{ url_for('home_page') }}" class="logo"><strong>The Shuffle</strong> by Rama</a>
             <nav id="nav">
-                <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('subject') }}">Subject</a>
-                <a href="{{ url_for('history') }}">History</a>
-                <a href="{{ url_for('log') }}">Log</a>
-
+                <a href="{{ url_for('home_page') }}">Home</a>
+                <a href="{{ url_for('subject_page') }}">Subject</a>
+                <a href="{{ url_for('history_page') }}">History</a>
+                <a href="{{ url_for('log_page') }}">Log</a>
+                <a href="{{ url_for('home_page') }}" class="far fa-user"></a>
             </nav>
             <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
         </div>
@@ -39,30 +44,9 @@
     <section id="banner">
         <div class="inner">
             <header>
-                <h1>Welcome to Projection</h1>
+                <h1>The Shuffle</h1>
+                <p>So, I will keep moving forward.</p>
             </header>
-
-            <div class="flex ">
-                <div>
-                    <span class="icon fa-car"></span>
-                    <h3>Aliquam</h3>
-                    <p>Suspendisse amet ullamco</p>
-                </div>
-                <div>
-                    <span class="icon fa-camera"></span>
-                    <h3>Elementum</h3>
-                    <p>Class aptent taciti ad litora</p>
-                </div>
-                <div>
-                    <span class="icon fa-bug"></span>
-                    <h3>Ultrices</h3>
-                    <p>Nulla vitae mauris non felis</p>
-                </div>
-            </div>
-
-            <footer>
-                <a href="#" class="button">Get Started</a>
-            </footer>
         </div>
     </section>
 
@@ -71,26 +55,12 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="inner">
-            <h3>Get in touch</h3>
-
-            <form action="#" method="post">
-                <div class="field half first">
-                    <label for="name">Name</label>
-                    <input name="name" id="name" type="text" placeholder="Name">
-                </div>
-                <div class="field half">
-                    <label for="email">Email</label>
-                    <input name="email" id="email" type="email" placeholder="Email">
-                </div>
-                <div class="field">
-                    <label for="message">Message</label>
-                    <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-                </div>
-                <ul class="actions">
-                    <li><input value="Send Message" class="button alt" type="submit"></li>
-                </ul>
-            </form>
-
+            <ul class="icons">
+                <li><a href="#" class="fab fa-github fa-2x"></a></li>
+                <li><a href="#" class="fab fa-facebook-f fa-2x"></a></li>
+                <li><a href="#" class="fab fa-instagram fa-2x"></a></li>
+                <li><a href="#" class="fab fa-twitter fa-2x"></a></li>                
+            </ul>
             <div class="copyright">
                 &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a
                     href="https://unsplash.com">Unsplash</a>.
