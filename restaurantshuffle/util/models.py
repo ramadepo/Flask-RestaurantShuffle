@@ -1,4 +1,4 @@
-from exts import db
+from util.exts import db
 
 
 class Region(db.Model):

@@ -476,7 +476,7 @@
 	@media screen and (max-width: 1680px) {
 
 		.row > * {
-			padding: 0 0 0 2em;
+			padding: 0 0 0 0em;
 		}
 
 		.row {
@@ -1657,7 +1657,7 @@
 		color: #555;
 		font-weight: 400;
 		line-height: 1.5;
-		margin: 0 0 1em 0;
+		margin: 0 0 0 0;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1666,8 +1666,8 @@
 		}
 
 	h2 {
-		font-size: 1.85em;
-		font-weight: 300;
+		font-size: 2em;
+		font-weight: 600;
 	}
 
 	h3 {
@@ -1683,7 +1683,7 @@
 		}
 
 	h4 {
-		font-size: 1.5em;
+		font-size: 1.3em;
 	}
 
 	h5 {
@@ -1739,7 +1739,7 @@
 
 	hr {
 		border: 0;
-		border-bottom: solid 1px #dbdbdb;
+		border-bottom: solid 2px #dbdbdb;
 		margin: 2em 0;
 	}
 
@@ -1976,7 +1976,7 @@
 		background: #23b1ec;
 		border-radius: 10px;
 		border: none;
-		border: solid 2px #8dcca9;
+		border: solid 2px #23b1ec;
 		color: #fff;
 		display: block;
 		outline: 0;
@@ -2042,9 +2042,12 @@
 	input[type="email"],
 	select {
 		height: 2.75em;
+		text-align: center;
 	}
 
 	textarea {
+		border: none;
+		resize: none;
 		padding: 0.75em 1em;
 	}
 
@@ -2531,12 +2534,12 @@
 		border: 0;
 		cursor: pointer;
 		display: inline-block;
-		font-size: .75em;
-		font-weight: 400;
+		font-size: 0.85em;
+		font-weight: bold;
 		height: 3.75em;
 		line-height: 3.85em;
 		letter-spacing: 2px;
-		padding: 0 4em;
+		padding: 0 2em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;

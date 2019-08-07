@@ -5,33 +5,34 @@
 <!-- Three -->
 <section id="three" class="wrapper align-center">
     <div class="inner">
-        <div class="flex flex-2">
-            <article>
-                <div class="image round">
-                    <img src="{{ url_for('static', filename='images/Projection/pic01.jpg') }}" alt="Pic 01" />
+        <div class="flex flex-column">
+            <h2>News</h2>
+            <hr />
+            <!-- Shuffle Source -->
+            <div class="col-6 offset-3">
+                <textarea name="shuffle_source" placeholder="One row for one data" rows="5"></textarea>
+            </div>
+            <br>
+            <!-- Shuffle Button & Shuffle Number -->
+            <div class="row justify-content-start align-items-center">
+                <div class="col-1 offset-4">
+                    <input type="submit" value="Shuffle" />
                 </div>
-                <header>
-                    <h3>Lorem ipsum<br /> dolor amet nullam</h3>
-                </header>
-                <p>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in
-                    diam sed arcu. Cras<br />consequat egestas augue vulputate.</p>
-                <footer>
-                    <a href="#" class="button">Learn More</a>
-                </footer>
-            </article>
-            <article>
-                <div class="image round">
-                    <img src="{{ url_for('static', filename='images/Projection/pic02.jpg') }}" alt="Pic 02" />
+                <div class="col-1" style="padding: 0 0 0 1em;">
+                    <h4>out</h4>
                 </div>
-                <header>
-                    <h3>Sed feugiat<br /> tempus adipicsing</h3>
-                </header>
-                <p>Pellentesque fermentum dolor. Aliquam quam lectus<br />facilisis auctor, ultrices ut, elementum
-                    vulputate, nunc<br /> blandit ellenste egestagus commodo.</p>
-                <footer>
-                    <a href="#" class="button">Learn More</a>
-                </footer>
-            </article>
+                <div class="col-1">
+                    <input type="text" name="result_number" value="1" placeholder="1" />
+                </div>
+                <div class="col-1" style="padding: 0 0 0 1.5em;">
+                    <h4>result(s)</h4>
+                </div>
+            </div>
+            <br>
+            <!-- Shuffle Result -->
+            <div class="col-6 offset-3">
+                <textarea name="shuffle_result" placeholder="Result(s)..." rows="5"></textarea>
+            </div>
         </div>
     </div>
 </section>
