@@ -2043,6 +2043,7 @@
 	select {
 		height: 2.75em;
 		text-align: center;
+		border: none;
 	}
 
 	textarea {
@@ -2127,27 +2128,27 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: #c4e5d3 !important;
+		color: #dddddd !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: #c4e5d3 !important;
+		color: #dddddd !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: #c4e5d3 !important;
+		color: #dddddd !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: #c4e5d3 !important;
+		color: #dddddd !important;
 		opacity: 1.0;
 	}
 
 	.formerize-placeholder {
-		color: #c4e5d3 !important;
+		color: #dddddd !important;
 		opacity: 1.0;
 	}
 
@@ -2539,7 +2540,7 @@
 		height: 3.75em;
 		line-height: 3.85em;
 		letter-spacing: 2px;
-		padding: 0 2em;
+		padding: 0 1em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;

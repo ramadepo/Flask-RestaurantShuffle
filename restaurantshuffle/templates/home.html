@@ -8,15 +8,25 @@
         <div class="flex flex-column">
             <h2>News</h2>
             <hr />
+            <!-- Data description -->
+            <div class="row align-items-center">
+                <div class="col-2 offset-3" style="text-align: right;">
+                    <a href="#" class="button far fa-download">Import</a>
+                </div>
+                <div class="col-4" style="text-align: left;">
+                    <h4>.csv&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;&nbsp;Paste&nbsp;data</h4>
+                </div>
+            </div>
+            <br>
             <!-- Shuffle Source -->
             <div class="col-6 offset-3">
-                <textarea name="shuffle_source" placeholder="One row for one data" rows="5"></textarea>
+                <textarea name="shuffle_source" placeholder="One row for one element" rows="5"></textarea>
             </div>
             <br>
             <!-- Shuffle Button & Shuffle Number -->
-            <div class="row justify-content-start align-items-center">
+            <div class="row align-items-center">
                 <div class="col-2 offset-3" style="text-align: right;">
-                    <input type="submit" value="Shuffle" />
+                    <input class="far" type="submit" value="Shuffle" />
                 </div>
                 <div class="col-1">
                     <h4>out</h4>
