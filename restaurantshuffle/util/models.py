@@ -26,8 +26,14 @@ class Account(db.Model):
 class Subject(db.Model):
     __tablename__ = 'subject'
 
-    account_id = db.Column(db.String(6), db.ForeignKey(
-        'account.id'), primary_key=True, nullable=False)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['account_id'],
+            ['account.id'],
+        ),
+    )
+
+    account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     last_date = db.Column(db.DateTime, nullable=False)
@@ -47,16 +53,25 @@ class Subject(db.Model):
 class Element(db.Model):
     __tablename__ = 'element'
 
-    account_id = db.Column(db.String(6), db.ForeignKey(
-        'subject.account_id'), primary_key=True, nullable=False)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['account_id'],
+            ['account.id'],
+        ),
+        db.ForeignKeyConstraint(
+            ['account_id', 'subject_no'],
+            ['subject.account_id', 'subject.number'],
+        ),
+    )
+
+    account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
-    subject_no = db.Column(db.String(6), db.ForeignKey(
-        'subject.number'), nullable=False)
+    subject_no = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
 
     account = db.relationship(
-        'Account', foreign_keys='Element.account_id', backref=db.backref('elements'))
+        'Account', backref=db.backref('elements'))
     subject = db.relationship('Subject', backref=db.backref('elements'))
 
     @property
@@ -73,8 +88,14 @@ class Element(db.Model):
 class History(db.Model):
     __tablename__ = 'history'
 
-    account_id = db.Column(db.String(6), db.ForeignKey(
-        'account.id'), primary_key=True, nullable=False)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['account_id'],
+            ['account.id'],
+        ),
+    )
+
+    account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
     create_date = db.Column(db.DateTime, nullable=False)
 
@@ -92,13 +113,25 @@ class History(db.Model):
 class WithHistoryElements(db.Model):
     __tablename__ = 'withhistoryelements'
 
-    account_id = db.Column(db.String(6), db.ForeignKey(
-        'account.id'), primary_key=True, nullable=False)
-    history_no = db.Column(db.Integer, db.ForeignKey(
-        'history.number'), primary_key=True, nullable=False)
-    element_no = db.Column(db.Integer, db.ForeignKey(
-        'element.number'), primary_key=True, nullable=False)
-    check = db.Column(db.Boolean, default=True, nullable=False)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['account_id'],
+            ['account.id'],
+        ),
+        db.ForeignKeyConstraint(
+            ['account_id', 'history_no'],
+            ['history.account_id', 'history.number'],
+        ),
+        db.ForeignKeyConstraint(
+            ['account_id', 'element_no'],
+            ['element.account_id', 'element.number'],
+        ),
+    )
+
+    account_id = db.Column(db.String(6), primary_key=True, nullable=False)
+    history_no = db.Column(db.Integer, primary_key=True, nullable=False)
+    element_no = db.Column(db.Integer, primary_key=True, nullable=False)
+    checked = db.Column(db.Boolean, default=True, nullable=False)
 
     @property
     def serialize(self):
@@ -113,9 +146,16 @@ class WithHistoryElements(db.Model):
 class Message(db.Model):
     __tablename__ = 'message'
 
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['account_id'],
+            ['account.id'],
+            name='UC_Account'
+        ),
+    )
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    account_id = db.Column(db.String(6), db.ForeignKey(
-        'account.id'), nullable=False)
+    account_id = db.Column(db.String(6), nullable=False)
     create_date = db.Column(db.DateTime, nullable=False)
     content = db.Column(db.Text, nullable=False)
 
