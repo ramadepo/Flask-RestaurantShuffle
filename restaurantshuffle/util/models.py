@@ -1,4 +1,5 @@
 from util.exts import db
+from datetime import datetime
 
 
 class Account(db.Model):
@@ -8,7 +9,7 @@ class Account(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(70), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
+    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     permission = db.Column(db.Integer, nullable=False)
 
     @property
@@ -97,7 +98,7 @@ class History(db.Model):
 
     account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
+    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     account = db.relationship('Account', backref=db.backref('historys'))
 
@@ -156,7 +157,7 @@ class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     account_id = db.Column(db.String(6), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
+    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
 
     account = db.relationship('Account', backref=db.backref('messages'))
@@ -176,7 +177,7 @@ class Log(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String(20), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False)
+    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
 

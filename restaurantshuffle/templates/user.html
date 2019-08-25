@@ -2,62 +2,75 @@
 {% block title %} The Shuffle - Home {% endblock title %}
 
 {% block page_content %}
-<!-- Three -->
 <section id="three" class="wrapper align-center">
     <div class="inner">
         <div class="flex flex-2">
+            <!-- Sign Up Part -->
             <article>
                 <header>
                     <h3>Sign Up</h3>
                 </header>
                 <br>
-                <div class="row align-items-center">
-                    <div class="col-2 offset-3">Email</div>
-                    <div class="col-5">
-                        <input type="text" name="signup_email" style="text-align: left;" />
+                <!-- Email -->
+                <form action="{{ url_for('signup') }}"  method="post">
+                    <!-- Email -->
+                    <div class="row align-items-center">
+                        <div class="col-2 offset-3">Email</div>
+                        <div class="col-5">
+                            <input type="text" name="signup_email" style="text-align: left;" />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row align-items-center">
-                    <div class="col-2 offset-3">Username</div>
-                    <div class="col-5">
-                        <input type="text" name="signup_username" style="text-align: left;" />
+                    <br>
+                    <!-- Username -->
+                    <div class="row align-items-center">
+                        <div class="col-2 offset-3">Username</div>
+                        <div class="col-5">
+                            <input type="text" name="signup_username" style="text-align: left;" />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row align-items-center">
-                    <div class="col-2 offset-3">Password</div>
-                    <div class="col-5">
-                        <input type="text" name="signup_password" style="text-align: left;" />
+                    <br>
+                    <!-- Password -->
+                    <div class="row align-items-center">
+                        <div class="col-2 offset-3">Password</div>
+                        <div class="col-5">
+                            <input type="text" name="signup_password" style="text-align: left;" />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <footer>
-                    <input class="far-user-login" type="submit" value="Sign Up" />
-                </footer>
+                    <br>
+                    <!-- Submit -->
+                    <footer>
+                        <input class="far-user-login" type="submit" value="Sign Up" />
+                    </footer>
+                </form>
             </article>
+            <!-- Sign In Part -->
             <article>
                 <header>
                     <h3>Sign In</h3>
                 </header>
                 <br>
-                <div class="row align-items-center">
-                    <div class="col-2 offset-3">Username</div>
-                    <div class="col-5">
-                        <input type="text" name="signup_username" style="text-align: left;" />
+                <form action="{{ url_for('signin') }}" method="post">
+                    <!-- Username -->
+                    <div class="row align-items-center">
+                        <div class="col-2 offset-3">Username</div>
+                        <div class="col-5">
+                            <input type="text" name="signin_username" style="text-align: left;" />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row align-items-center">
-                    <div class="col-2 offset-3">Password</div>
-                    <div class="col-5">
-                        <input type="text" name="signup_password" style="text-align: left;" />
+                    <br>
+                    <!-- Password -->
+                    <div class="row align-items-center">
+                        <div class="col-2 offset-3">Password</div>
+                        <div class="col-5">
+                            <input type="text" name="signin_password" style="text-align: left;" />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <footer>
-                    <input class="far-user-login" type="submit" value="Sign In" />
-                </footer>
+                    <br>
+                    <!-- Submit -->
+                    <footer>
+                        <input class="far-user-login" type="submit" value="Sign In" />
+                    </footer>
+                </form>
             </article>
         </div>
     </div>
