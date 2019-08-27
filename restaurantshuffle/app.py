@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from util.exts import db
 from util.models import *
 from util.hasher import Hasher
+from util.formater import Formater
 import config
 
 
@@ -63,6 +64,8 @@ def signup():
         flash('Input must not be empty.', 'danger')
     elif account_email or account_username:
         flash('Email or Username has been used.', 'danger')
+    elif Formater.is_email(data['signup_email']) is None:
+        flash('Wrong email format. E.g. example@example.com', 'danger')
     else:
         while True:
             id = Hasher.hash(6)

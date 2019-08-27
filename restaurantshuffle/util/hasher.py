@@ -11,8 +11,8 @@ class Hasher():
         return result
 
     @classmethod
-    def sha256(cls, input):
-        return hashlib.sha256(input.encode()).hexdigest()
+    def sha256(cls, source):
+        return hashlib.sha256(source.encode()).hexdigest()
 
     @classmethod
     def generate_certification(cls, account_id):
