@@ -3,6 +3,7 @@ from util.exts import db
 from util.models import *
 from util.hasher import Hasher
 from util.formater import Formater
+from util.emailer import Emailer
 import config
 
 
@@ -82,6 +83,9 @@ def signup():
         db.session.add(new_account)
         db.session.commit()
 
+        Emailer.send_certificattion(email, id, Hasher.generate_certification(id))
+        flash('Please check your email then certificate your account.', 'success')
+
     return redirect(url_for('user_page'))
 
 
@@ -97,7 +101,12 @@ def signin():
 def certificate(account_id, certification):
     check = Hasher.generate_certification(account_id)
     if certification == check:
-        return 'Yes'
+        account = Account.query.filter(Account.id == account_id).first()
+        account.permission = 0
+        db.session.commit()
+
+        flash('Your account is certificated successfully. Please sign in and have a good day ~', 'success')
+        return redirect(url_for('user_page'))
     else:
         return 'No'
 

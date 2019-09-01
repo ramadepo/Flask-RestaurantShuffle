@@ -4,3 +4,4 @@ restaurantshuffle/config.py
 restaurantshuffle/migrations/*
 restaurantshuffle/uwsgi/restaurantshuffle.log
 nginx/certs/*
+restaurantshuffle/util/emailer.py
