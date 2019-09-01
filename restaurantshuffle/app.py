@@ -108,7 +108,8 @@ def certificate(account_id, certification):
         flash('Your account is certificated successfully. Please sign in and have a good day ~', 'success')
         return redirect(url_for('user_page'))
     else:
-        return 'No'
+        flash('Wrong certification ! Please check your email again or contact the customer service', 'danger')
+        return redirect(url_for('user_page'))
 
 
 if __name__ == '__main__':
