@@ -31,6 +31,7 @@ class Subject(db.Model):
         db.ForeignKeyConstraint(
             ['account_id'],
             ['account.id'],
+            name='FK_AccountForSubject'
         ),
     )
 
@@ -58,10 +59,12 @@ class Element(db.Model):
         db.ForeignKeyConstraint(
             ['account_id'],
             ['account.id'],
+            name='FK_AccountForElement'
         ),
         db.ForeignKeyConstraint(
             ['account_id', 'subject_no'],
             ['subject.account_id', 'subject.number'],
+            name='FK_SubjectForElement'
         ),
     )
 
@@ -93,6 +96,7 @@ class History(db.Model):
         db.ForeignKeyConstraint(
             ['account_id'],
             ['account.id'],
+            name='FK_AccountForHistory'
         ),
     )
 
@@ -118,14 +122,17 @@ class WithHistoryElements(db.Model):
         db.ForeignKeyConstraint(
             ['account_id'],
             ['account.id'],
+            name='FK_AccountForWith'
         ),
         db.ForeignKeyConstraint(
             ['account_id', 'history_no'],
             ['history.account_id', 'history.number'],
+            name='FK_HistoryForWith'
         ),
         db.ForeignKeyConstraint(
             ['account_id', 'element_no'],
             ['element.account_id', 'element.number'],
+            name='FK_ElementForWith'
         ),
     )
 
@@ -151,7 +158,7 @@ class Message(db.Model):
         db.ForeignKeyConstraint(
             ['account_id'],
             ['account.id'],
-            name='UC_Account'
+            name='FK_AccountForMessage'
         ),
     )
 

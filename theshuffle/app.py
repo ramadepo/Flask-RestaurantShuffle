@@ -71,7 +71,7 @@ def signup():
         while True:
             id = Hasher.hash(6)
             account_id = Account.query.filter(Account.id == id).first()
-            if not account_id:
+            if account_id is None:
                 break
         email = data['signup_email']
         username = data['signup_username']
@@ -102,13 +102,17 @@ def certificate(account_id, certification):
     check = Hasher.generate_certification(account_id)
     if certification == check:
         account = Account.query.filter(Account.id == account_id).first()
-        account.permission = 0
-        db.session.commit()
+        if account is not None:
+            account.permission = 0
+            db.session.commit()
 
-        flash('Your account is certificated successfully. Please sign in and have a good day ~', 'success')
-        return redirect(url_for('user_page'))
+            flash('Your account is certificated successfully. Please sign in and have a good day ~', 'success')
+            return redirect(url_for('user_page'))
+        else:
+            flash('Account not exist! Please contact the customer service.', 'danger')
+            return redirect(url_for('user_page'))
     else:
-        flash('Wrong certification ! Please check your email again or contact the customer service', 'danger')
+        flash('Wrong certification! Please check your email again or contact the customer service.', 'danger')
         return redirect(url_for('user_page'))
 
 

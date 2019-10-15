@@ -1,7 +1,7 @@
 *.pyc
 .vscode/*
-restaurantshuffle/config.py
-restaurantshuffle/migrations/*
-restaurantshuffle/uwsgi/restaurantshuffle.log
+theshuffle/config.py
+theshuffle/migrations/*
+theshuffle/uwsgi/restaurantshuffle.log
 nginx/certs/*
-restaurantshuffle/util/emailer.py
+theshuffle/util/emailer.py
