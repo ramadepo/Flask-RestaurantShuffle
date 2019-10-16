@@ -24,22 +24,34 @@ def home_page():
 
 @app.route('/subject')
 def subject_page():
-    return render_template('subject.html')
+    if session.get('username') is not None:
+        return render_template('subject.html')
+    else:
+        return redirect(url_for('user_page'))
 
 
 @app.route('/subject/<number>')
 def subject_profile(number):
-    return render_template('subject_profile.html')
+    if session.get('username') is not None:
+        return render_template('subject_profile.html')
+    else:
+        return redirect(url_for('user_page'))
 
 
 @app.route('/history')
 def history_page():
-    return render_template('history.html')
+    if session.get('username') is not None:
+        return render_template('history.html')
+    else:
+        return redirect(url_for('user_page'))
 
 
 @app.route('/log')
 def log_page():
-    return render_template('log.html')
+    if session.get('username') is not None:
+        return render_template('log.html')
+    else:
+        return redirect(url_for('user_page'))
 
 
 @app.route('/user')
