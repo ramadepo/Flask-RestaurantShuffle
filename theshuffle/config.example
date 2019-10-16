@@ -1,6 +1,9 @@
 # Debug Mode (boolean)
 DEBUG =
 
+# Session secret key
+SECRET_KEY = os.urandom(32)
+
 # MySQL Connection Setting (String)
 DIALECT = ""
 DRIVER = ""

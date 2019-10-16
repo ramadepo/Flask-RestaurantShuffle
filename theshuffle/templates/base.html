@@ -34,6 +34,9 @@
                 <a href="{{ url_for('history_page') }}">History</a>
                 <a href="{{ url_for('log_page') }}">Log</a>
                 <a href="{{ url_for('user_page') }}" class="far fa-user"></a>
+                {% if session.get('username') is not none %}
+                    <a href="{{ url_for('signout')}}" class="fas fa-sign-out-alt"></a>
+                {% endif %}
             </nav>
             <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
         </div>

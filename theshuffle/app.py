@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from util.exts import db
 from util.models import *
 from util.hasher import Hasher
@@ -44,14 +44,23 @@ def log_page():
 
 @app.route('/user')
 def user_page():
-    return render_template('user.html')
+    if session.get('username') is not None:
+        return redirect(url_for('user_profile', username=session.get('username')))
+    else:
+        return render_template('user.html')
 
 
 @app.route('/user/<username>')
 def user_profile(username):
-    return render_template('user_profile.html')
+    if username == session.get('username'):
+        return render_template('user_profile.html')
+    else:
+        return redirect(url_for('user_page'))
 
 
+# user sign up flow
+# success -> send an email with account certification -> user_page
+# fail -> alert error message -> user_page
 @app.route('/user/signup', methods=['POST'])
 def signup():
     # data = {'signup_email': <String>, 'signup_username': <String>, 'signup_password': <String>}
@@ -79,24 +88,51 @@ def signup():
         permission = -1
         new_account = Account(
             id=id, email=email, username=username, password=password, permission=permission)
-        
+
         db.session.add(new_account)
         db.session.commit()
 
-        Emailer.send_certificattion(email, id, Hasher.generate_certification(id))
+        Emailer.send_certificattion(
+            email, id, Hasher.generate_certification(id))
         flash('Please check your email then certificate your account.', 'success')
 
     return redirect(url_for('user_page'))
 
 
+# user sign in flow (activated permission)
+# success -> redirect to user_profile page and store user information in session -> user_profile
+# fail -> alert error message -> user_page
 @app.route('/user/signin', methods=['POST'])
 def signin():
     # data = {'signin_username': <String>, 'signin_password': <String>}
     data = request.form
+    account = Account.query.filter(
+        Account.username == data['signin_username']).first()
+    if account is not None:
+        if Hasher.sha256(data['signin_password']) == account.password:
+            if account.permission >= 0:
+                session['username'] = data['signin_username']
+                return redirect(url_for('user_page'))
+            else:
+                flash(
+                    'Invalid Account Certification! Please check your email, then activate the account certification.', 'danger')
+        else:
+            flash('Account not exist! Please check your Username or Password.', 'danger')
+    else:
+        flash('Account not exist! Please check your Username or Password.', 'danger')
 
     return redirect(url_for('user_page'))
 
 
+@app.route('/user/signout')
+def signout():
+    session.clear()
+    return redirect(url_for('user_page'))
+
+
+# certificate user's account by email link
+# success -> permission change to 0 -> user_page
+# fail -> alert error message -> user_page
 @app.route('/certificate/<account_id>/<certification>')
 def certificate(account_id, certification):
     check = Hasher.generate_certification(account_id)
@@ -106,7 +142,8 @@ def certificate(account_id, certification):
             account.permission = 0
             db.session.commit()
 
-            flash('Your account is certificated successfully. Please sign in and have a good day ~', 'success')
+            flash(
+                'Your account is certificated successfully. Please sign in and have a good day ~', 'success')
             return redirect(url_for('user_page'))
         else:
             flash('Account not exist! Please contact the customer service.', 'danger')
