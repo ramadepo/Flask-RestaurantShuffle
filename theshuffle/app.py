@@ -65,7 +65,8 @@ def user_page():
 @app.route('/user/<username>')
 def user_profile(username):
     if username == session.get('username'):
-        return render_template('user_profile.html')
+        user_data = {}
+        return render_template('user_profile.html', user_data=user_data)
     else:
         return redirect(url_for('user_page'))
 
@@ -124,7 +125,6 @@ def signin():
         if Hasher.sha256(data['signin_password']) == account.password:
             if account.permission >= 0:
                 session['username'] = data['signin_username']
-                return redirect(url_for('user_page'))
             else:
                 flash(
                     'Invalid Account Certification! Please check your email, then activate the account certification.', 'danger')
@@ -156,13 +156,12 @@ def certificate(account_id, certification):
 
             flash(
                 'Your account is certificated successfully. Please sign in and have a good day ~', 'success')
-            return redirect(url_for('user_page'))
         else:
             flash('Account not exist! Please contact the customer service.', 'danger')
-            return redirect(url_for('user_page'))
     else:
         flash('Wrong certification! Please check your email again or contact the customer service.', 'danger')
-        return redirect(url_for('user_page'))
+
+    return redirect(url_for('user_page'))
 
 
 if __name__ == '__main__':
