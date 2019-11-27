@@ -14,6 +14,4 @@ pip install flask-migrate
 
 pip install cryptography
 
-[Docker Hub](https://cloud.docker.com/repository/registry-1.docker.io/ramadepo/restaurant-shuffle)
-
 [HackMD](https://hackmd.io/@uo0IthDnRdahLIQFI95x-A/SkrjwFAGr)

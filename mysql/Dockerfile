@@ -2,5 +2,5 @@ FROM mysql
 MAINTAINER Rama
 
 ENV MYSQL_ROOT_PASSWORD=mysqlpassword
-ENV MYSQL_DATABASE=db_flask_rs
+ENV MYSQL_DATABASE=db_flask_ts
 EXPOSE 3306

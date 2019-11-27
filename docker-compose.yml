@@ -1,21 +1,21 @@
 version: '3'
 services:
   mysqldb:
-    image: ramadepo/rsmysql
+    image: ramadepo/tsmysql
     build:
       context: ./mysql
       dockerfile: Dockerfile
     networks:
       - my-net
-  my-rs:
-    image: ramadepo/restaurant-shuffle:1.7
+  my-ts:
+    image: ramadepo/theshuffle:1.0
     build:
-      context: ./restaurantshuffle
+      context: ./theshuffle
       dockerfile: Dockerfile
     networks:
       - my-net
   nginx:
-    image: ramadepo/rsnginx
+    image: ramadepo/tsnginx
     build:
       context: ./nginx
       dockerfile: Dockerfile

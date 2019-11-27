@@ -1,7 +1,7 @@
-flask
-uwsgi
-pymysql
-flask-sqlalchemy
-flask-script
-flask-migrate
-cryptography
+flask  # flask
+uwsgi  # web server gateway interface
+pymysql  # mysql driver
+flask-sqlalchemy  # mysql
+flask-script  # flask in command line
+flask-migrate  # handle sqlalchemy migrate
+cryptography  # for pymysql usage
