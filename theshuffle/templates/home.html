@@ -46,3 +46,7 @@
     </div>
 </section>
 {% endblock page_content %}
+
+{% block end_source %}
+<script src="{{ url_for('static', filename='js/shuffle.js') }}"></script>
+{% endblock end_source %}

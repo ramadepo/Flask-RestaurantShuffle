@@ -1,7 +1,14 @@
+# vscode file
 *.pyc
 .vscode/*
-theshuffle/config.py
+
+# flask migrate
 theshuffle/migrations/*
-theshuffle/uwsgi/restaurantshuffle.log
+
+# uwsgi log
+theshuffle/uwsgi/theshuffle.log
+
+# important config
 nginx/certs/*
+theshuffle/config.py
 theshuffle/util/emailer.py
