@@ -10,28 +10,28 @@
             <!-- Data import description -->
             <div class="row align-items-center">
                 <div class="col-2 offset-3" style="text-align: right;">
-                    <a href="#" class="button far fa-download">Import</a>
+                    <input id="upload_csv" type="file" accept=".csv" onchange="uploadCSV();"/>
                 </div>
                 <div class="col-4" style="text-align: left;">
-                    <h4>.csv&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;&nbsp;Paste&nbsp;data</h4>
+                    <h4>or&nbsp;&nbsp;&nbsp;&nbsp;Copy & Paste&nbsp;your data</h4>
                 </div>
             </div>
             <br>
             <!-- Shuffle Source -->
             <div class="col-6 offset-3">
-                <textarea name="shuffle_source" placeholder="One row for one element" rows="5"></textarea>
+                <textarea id="shuffle_source" name="shuffle_source" placeholder="One row for one element" rows="5"></textarea>
             </div>
             <br>
             <!-- Shuffle Button & Shuffle Number -->
             <div class="row align-items-center">
                 <div class="col-2 offset-3" style="text-align: right;">
-                    <input class="far" type="submit" value="Shuffle" />
+                    <input class="far" type="submit" value="Shuffle" onclick="shuffle();"/>
                 </div>
                 <div class="col-1">
                     <h4>out</h4>
                 </div>
                 <div class="col-1">
-                    <input type="text" name="result_number" value="1" placeholder="1" />
+                    <input type="text" id="result_number" name="result_number" value="1" placeholder="1" />
                 </div>
                 <div class="col-1" style="padding: 0 0 0 2.2em;">
                     <h4>result(s)</h4>
@@ -40,7 +40,7 @@
             <br>
             <!-- Shuffle Result -->
             <div class="col-6 offset-3">
-                <textarea name="shuffle_result" placeholder="Result(s)..." rows="5"></textarea>
+                <textarea id="shuffle_result" name="shuffle_result" placeholder="Result(s)..." rows="5"></textarea>
             </div>
         </div>
     </div>
