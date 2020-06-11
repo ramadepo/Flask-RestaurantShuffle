@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} The Shuffle - Home {% endblock title %}
+
+{% block page_content %}
+<!-- Three -->
+<section id="three" class="wrapper align-center">
+    <div class="inner">
+        <div class="flex flex-2">
+            <article>
+                <div class="image round">
+                    <img src="{{ url_for('static', filename='images/Projection/pic01.jpg') }}" alt="Pic 01" />
+                </div>
+                <header>
+                    <h3>Subject Number</h3>
+                </header>
+                <p>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in
+                    diam sed arcu. Cras<br />consequat egestas augue vulputate.</p>
+                <footer>
+                    <a href="#" class="button">Learn More</a>
+                </footer>
+            </article>
+            <article>
+                <div class="image round">
+                    <img src="{{ url_for('static', filename='images/Projection/pic02.jpg') }}" alt="Pic 02" />
+                </div>
+                <header>
+                    <h3>Subject Number</h3>
+                </header>
+                <p>Pellentesque fermentum dolor. Aliquam quam lectus<br />facilisis auctor, ultrices ut, elementum
+                    vulputate, nunc<br /> blandit ellenste egestagus commodo.</p>
+                <footer>
+                    <a href="#" class="button">Learn More</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock page_content %}

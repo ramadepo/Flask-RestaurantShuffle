@@ -9,7 +9,8 @@ class Account(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(70), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    create_date = db.Column(db.DateTime, nullable=False,
+                            default=datetime.utcnow)
     permission = db.Column(db.Integer, nullable=False)
 
     @property
@@ -38,7 +39,7 @@ class Subject(db.Model):
     account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    last_date = db.Column(db.DateTime, nullable=False)
+    last_date = db.Column(db.DateTime)
 
     account = db.relationship('Account', backref=db.backref('subjects'))
 
@@ -102,7 +103,8 @@ class History(db.Model):
 
     account_id = db.Column(db.String(6), primary_key=True, nullable=False)
     number = db.Column(db.Integer, primary_key=True, nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    create_date = db.Column(db.DateTime, nullable=False,
+                            default=datetime.utcnow)
 
     account = db.relationship('Account', backref=db.backref('historys'))
 
@@ -151,40 +153,13 @@ class WithHistoryElements(db.Model):
         }
 
 
-class Message(db.Model):
-    __tablename__ = 'message'
-
-    __table_args__ = (
-        db.ForeignKeyConstraint(
-            ['account_id'],
-            ['account.id'],
-            name='FK_AccountForMessage'
-        ),
-    )
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    account_id = db.Column(db.String(6), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-
-    account = db.relationship('Account', backref=db.backref('messages'))
-
-    @property
-    def serialize(self):
-        return {
-            'id': self.id,
-            'account_id': self.account_id,
-            'create_date': self.create_date,
-            'content': self.content
-        }
-
-
 class Log(db.Model):
     __tablename__ = 'log'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String(20), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    create_date = db.Column(db.DateTime, nullable=False,
+                            default=datetime.utcnow)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
 

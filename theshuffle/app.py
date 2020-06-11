@@ -25,7 +25,9 @@ def home_page():
 @app.route('/subject')
 def subject_page():
     if session.get('username') is not None:
-        return render_template('subject.html')
+        subjects = Subject.query.filter(
+            Subject.account_id == session.get('account_id')).all()
+        return render_template('subject.html', subjects=subjects)
     else:
         return redirect(url_for('user_page'))
 
@@ -33,7 +35,88 @@ def subject_page():
 @app.route('/subject/<number>')
 def subject_profile(number):
     if session.get('username') is not None:
-        return render_template('subject_profile.html')
+        subject = Subject.query.filter(Subject.account_id == session.get(
+            'account_id'), Subject.number == number).first()
+        elements = Element.query.filter(Element.account_id == session.get(
+            'account_id'), Element.subject_no == number).all()
+        return render_template('subject_profile.html', subject=subject, elements=elements)
+    else:
+        return redirect(url_for('user_page'))
+
+
+@app.route('/subject', methods=['POST'])
+def new_subject():
+    if session.get('username') is not None:
+        data = request.form
+        number = len(Subject.query.filter(
+            Subject.account_id == session.get('account_id')).all())
+        name = data.get('new_subject_name')
+        new_subject = Subject(account_id=session.get(
+            'account_id'), number=number, name=name)
+        db.session.add(new_subject)
+        db.session.commit()
+        return redirect(url_for('subject_page'))
+    else:
+        return redirect(url_for('user_page'))
+
+
+@app.route('/subject/<number>/update', methods=['POST'])
+def update_subject(number):
+    if session.get('username') is not None:
+        data = request.form
+        subject = Subject.query.filter(Subject.account_id == session.get(
+            'account_id'), Subject.number == number).first()
+        name = data.get('update_subject_name')
+        subject.name = name
+        db.session.commit()
+        return redirect(url_for('subject_page'))
+    else:
+        return redirect(url_for('user_page'))
+
+
+@app.route('/element/<number>')
+def element_profile(number):
+    if session.get('username') is not None:
+        element = Element.query.filter(Element.account_id == session.get(
+            'account_id'), Element.number == number).first()
+        return render_template('element_profile.html', element=element)
+    else:
+        return redirect(url_for('user_page'))
+
+
+@app.route('/element', methods=['POST'])
+def new_element():
+    if session.get('username') is not None:
+        data = request.form
+        number = len(Element.query.filter(
+            Element.account_id == session.get('account_id')).all())
+        subject_no = data.get('subject_no')
+        name = data.get('new_element_name')
+        description = data.get('description')
+        new_element = Element(account_id=session.get(
+            'account_id'), number=number, subject_no=subject_no, name=name, description=description)
+        db.session.add(new_element)
+        db.session.commit()
+        return redirect(url_for('subject_page'))
+    else:
+        return redirect(url_for('user_page'))
+
+
+@app.route('/element/<number>/update', methods=['POST'])
+def update_element(number):
+    if session.get('username') is not None:
+        data = request.form
+        element = Element.query.filter(Element.account_id == session.get(
+            'account_id'), Element.number == number).first()
+        original_number = element.subject_no
+        subject_no = data.get('update_element_subject_no')
+        name = data.get('update_element_name')
+        description = data.get('update_element_description')
+        element.name = name
+        element.subject_no = subject_no
+        element.description = description
+        db.session.commit()
+        return redirect(url_for('subject_profile', number=original_number))
     else:
         return redirect(url_for('user_page'))
 
@@ -65,8 +148,13 @@ def user_page():
 @app.route('/user/<username>')
 def user_profile(username):
     if username == session.get('username'):
-        user_data = {}
-        return render_template('user_profile.html', user_data=user_data)
+        account = Account.query.filter(
+            Account.id == session.get('account_id')).first()
+        subjects = Subject.query.filter(
+            Subject.account_id == session.get('account_id')).all()
+        elements = Element.query.filter(
+            Element.account_id == session.get('account_id')).all()
+        return render_template('user_profile.html', account=account, subjects=subjects, elements=elements)
     else:
         return redirect(url_for('user_page'))
 
@@ -79,15 +167,15 @@ def signup():
     # data = {'signup_email': <String>, 'signup_username': <String>, 'signup_password': <String>}
     data = request.form
     account_email = Account.query.filter(
-        Account.email == data['signup_email']).first()
+        Account.email == data.get('signup_email')).first()
     account_username = Account.query.filter(
-        Account.username == data['signup_username']).first()
+        Account.username == data.get('signup_username')).first()
 
-    if not (data['signup_email'] and data['signup_username'] and data['signup_password']):
+    if not (data.get('signup_email') and data.get('signup_username') and data.get('signup_password')):
         flash('Input must not be empty.', 'danger')
     elif account_email or account_username:
         flash('Email or Username has been used.', 'danger')
-    elif Formater.is_email(data['signup_email']) is None:
+    elif Formater.is_email(data.get('signup_email')) is None:
         flash('Wrong email format. E.g. example@example.com', 'danger')
     else:
         while True:
@@ -95,9 +183,9 @@ def signup():
             account_id = Account.query.filter(Account.id == id).first()
             if account_id is None:
                 break
-        email = data['signup_email']
-        username = data['signup_username']
-        password = Hasher.sha256(data['signup_password'])
+        email = data.get('signup_email')
+        username = data.get('signup_username')
+        password = Hasher.sha256(data.get('signup_password'))
         permission = -1
         new_account = Account(
             id=id, email=email, username=username, password=password, permission=permission)
@@ -120,11 +208,12 @@ def signin():
     # data = {'signin_username': <String>, 'signin_password': <String>}
     data = request.form
     account = Account.query.filter(
-        Account.username == data['signin_username']).first()
+        Account.username == data.get('signin_username')).first()
     if account is not None:
-        if Hasher.sha256(data['signin_password']) == account.password:
+        if Hasher.sha256(data.get('signin_password')) == account.password:
             if account.permission >= 0:
-                session['username'] = data['signin_username']
+                session['username'] = data.get('signin_username')
+                session['account_id'] = account.id
             else:
                 flash(
                     'Invalid Account Certification! Please check your email, then activate the account certification.', 'danger')
